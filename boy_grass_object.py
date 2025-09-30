@@ -40,6 +40,23 @@ class Small_ball:
         self.image.draw(self.x, self.y)
         pass
 
+class Big_ball:
+    def __init__(self):
+        self.x, self.y = random.randint(100, 700), 599
+        self.speed = random.randint(5, 10)
+        self.image = load_image('ball41x41.png')
+
+    def update(self):
+        if self.y - self.speed > 70:
+            self.y -= self.speed
+        else:
+            self.y = 70
+        pass
+
+    def draw(self):
+        self.image.draw(self.x, self.y)
+        pass
+
 class Zombie:
     def __init__(self):
         self.x, self.y = 100, 170
@@ -99,10 +116,13 @@ def reset_world():
     world.append(zombie)
 
     small_ball = Small_ball()
+    big_ball = Big_ball()
 
     for _ in range(20):
         if random.randint(0, 1) == 0:
             world.append(Small_ball())
+        else:
+            world.append(Big_ball())
 
 reset_world()
 
